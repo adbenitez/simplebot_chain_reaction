@@ -97,7 +97,11 @@ def chr_play(payload: str, message: Message, bot: DeltaBot, replies: Replies) ->
                 [sender, receiver],
             )
             game = Game(
-                p1=p1, p2=p2, chat_id=chat.id, board=board.export(), black_player=sender.addr
+                p1=p1,
+                p2=p2,
+                chat_id=chat.id,
+                board=board.export(),
+                black_player=sender.addr,
             )
             session.add(game)
             text = (
