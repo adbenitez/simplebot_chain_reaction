@@ -104,10 +104,7 @@ def chr_play(payload: str, message: Message, bot: DeltaBot, replies: Replies) ->
                 black_player=sender.addr,
             )
             session.add(game)
-            text = (
-                f"Hello {receiver.name},"
-                "You have been invited by {sender.name} to play Chain Reaction.\n\n{board.get_orb(Atom.BLACK)}: {sender.name}\n{board.get_orb(Atom.WHITE)}: {receiver.name}\n\n"
-            )
+            text = f"Hello {receiver.name},\nYou have been invited by {sender.name} to play Chain Reaction.\n\n{board.get_orb(Atom.BLACK)}: {sender.name}\n{board.get_orb(Atom.WHITE)}: {receiver.name}\n\n"
             replies.add(text=text + _run_turn(bot, game), chat=chat)
         else:
             text = f"❌ You already have a game group with {payload}"
