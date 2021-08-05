@@ -1,7 +1,11 @@
+"""Game board."""
+
 from enum import IntEnum
 
 
 class Atom(IntEnum):
+    """Class representing a single atom."""
+
     EMPTY = 0
     BLACK = 1
     BLACK2 = 2
@@ -17,6 +21,8 @@ ORBS = ["🔳", "🔴", "🟠", "🟡", "🟢", "🟣", "🔵"]
 
 
 class Board:
+    """Class representing a Chain Reaction board."""
+
     def __init__(self, board=None):
         if board:
             lines = board.split("\n")

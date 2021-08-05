@@ -1,3 +1,5 @@
+"""hooks, commands and filters definitions."""
+
 import os
 
 import simplebot
@@ -103,7 +105,12 @@ def chr_play(payload: str, message: Message, bot: DeltaBot, replies: Replies) ->
                 black_player=sender.addr,
             )
             session.add(game)
-            text = f"Hello {receiver.name},\nYou have been invited by {sender.name} to play Chain Reaction.\n\n{board.get_orb(Atom.BLACK)}: {sender.name}\n{board.get_orb(Atom.WHITE)}: {receiver.name}\n\n"
+            text = (
+                f"Hello {receiver.name},\n"
+                f"You have been invited by {sender.name} to play Chain Reaction.\n\n"
+                f"{board.get_orb(Atom.BLACK)}: {sender.name}\n"
+                f"{board.get_orb(Atom.WHITE)}: {receiver.name}\n\n"
+            )
             replies.add(text=text + _run_turn(bot, game), chat=chat)
         else:
             text = f"❌ You already have a game group with {payload}"
@@ -142,7 +149,10 @@ def chr_new(message: Message, bot: DeltaBot, replies: Replies) -> None:
             p2_name = bot.get_contact(
                 game.p2 if sender.addr == game.p1 else game.p1
             ).name
-            text = f"▶️ Game started!\n{board.get_orb(Atom.BLACK)}: {sender.name}\n{board.get_orb(Atom.WHITE)}: {p2_name}\n\n"
+            text = (
+                f"▶️ Game started!\n{board.get_orb(Atom.BLACK)}: {sender.name}\n"
+                f"{board.get_orb(Atom.WHITE)}: {p2_name}\n\n"
+            )
             replies.add(text=text + _run_turn(bot, game))
         else:
             replies.add(text="❌ There is an active game already", quote=message)
